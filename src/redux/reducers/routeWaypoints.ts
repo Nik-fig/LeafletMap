@@ -1,13 +1,16 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {getFastestRoute, getFastestRouteSuccess, getFastestRouteError} from '../actions/routeWaypoints';
+import {
+    getFastestRoute,
+    getFastestRouteSuccess,
+    getFastestRouteError,
+} from '../actions/routeWaypoints';
 import {Point} from "../../types/Point";
-
 
 interface IInitial {
     waypoints: Point[] | []
     isLoading: boolean,
-    error: Error | null,
+    error: string | null,
 }
 
 

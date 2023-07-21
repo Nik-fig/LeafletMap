@@ -1,4 +1,5 @@
-import {Point} from '../types/Point'
+import {Point} from '../../types/Point'
+import {HttpError} from '../../types/Errors/HttpError'
 
 export async function getFastestRoute(points: Point[]) {
     const service = 'route';
@@ -11,12 +12,15 @@ export async function getFastestRoute(points: Point[]) {
         'overview=full',
     ]
 
-    const query = `${url}/${service}/${version}/${profile}/${coordinatesJSON.join(';')}?${options.join('&')}`
+    const query = `${url}/${service}/${version}/${profile}/${coordinatesJSON.join(';')}?${options.join('&')}`;
     const data = await fetch(query, {
         method: 'GET',
     })
 
-    return data.json();
+    if (data.ok)
+        return data.json();
+    else
+        throw new HttpError(data.status, data.statusText);
 }
 
 
