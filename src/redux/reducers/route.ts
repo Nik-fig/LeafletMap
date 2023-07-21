@@ -1,12 +1,12 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createReducer} from '@reduxjs/toolkit';
 
-import {Route} from '../../types/Route';
-import {Point} from '../../types/Point';
+import {setSelectedRoute} from '../actions/route'
+import {Route} from "../../types/Route";
+
 
 interface IInitial {
     routes: Route[],
     selectedRoute?: Route['id'],
-    position: Point,
 }
 
 
@@ -40,21 +40,11 @@ const initialState: IInitial = {
         },
     ],
     selectedRoute: undefined,
-    position: {
-        latitude: 59.83567701,
-        longitude: 30.41705607,
-    }
 }
 
-const mapSlice = createSlice({
-    name: 'map',
-    initialState: initialState,
-    reducers: {
-        setSelectedRoute: (state, action: PayloadAction<Route['id']>) => {
+export default createReducer(initialState, builder => {
+    builder
+        .addCase(setSelectedRoute, (state, action) => {
             state.selectedRoute = action.payload;
-        }
-    }
+        })
 })
-
-export const {setSelectedRoute} = mapSlice.actions;
-export const mapReducer = mapSlice.reducer;

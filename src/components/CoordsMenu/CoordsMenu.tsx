@@ -2,8 +2,8 @@ import React, {FC} from 'react';
 import {Menu} from 'antd';
 
 import {useAppSelector, useAppDispatch} from '../../redux/hooks';
-import {getAllRoutes, getSelectedRoute} from '../../redux/selectors/map';
-import {setSelectedRoute} from '../../redux/slices/map'
+import {setSelectedRoute} from '../../redux/actions/route'
+import {getAllRoutes, getSelectedRoute} from "../../redux/selectors/route";
 
 interface CoordsMenuProps {
 }
@@ -12,8 +12,8 @@ type Props = CoordsMenuProps;
 
 export const CoordsMenu: FC<Props> = () => {
     const dispatch = useAppDispatch();
-    const routes = useAppSelector(state => getAllRoutes(state));
-    const selectedRoute = useAppSelector(state => getSelectedRoute(state));
+    const routes = useAppSelector(state => getAllRoutes(state.route));
+    const selectedRoute = useAppSelector(state => getSelectedRoute(state.route));
 
     return (
         <Menu
