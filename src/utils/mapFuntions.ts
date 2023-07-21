@@ -3,12 +3,13 @@ import {Point} from '../types/Point'
 export function centroid(coords: Point[]): Point {
     let latSum = 0;
     let lngSum = 0;
-    coords.map((coord):void => {
-        latSum += coord.latitude;
-        lngSum += coord.longitude;
+
+    coords.forEach(coord => {
+        latSum += coord.lat;
+        lngSum += coord.lng;
     })
 
-    return {longitude: lngSum / coords.length, latitude: latSum / coords.length};
+    return {lng: lngSum / coords.length, lat: latSum / coords.length};
 }
 
 /**
@@ -19,10 +20,10 @@ export function getRectangle(coords: Point[]): {topLeft: Point, bottomRight: Poi
     let bottomRightPoint: Point = coords[0];
 
     for (const coord of coords) {
-        if (coord.latitude < topLeftPoint.latitude && coord.longitude > topLeftPoint.longitude)
+        if (coord.lat < topLeftPoint.lat && coord.lng > topLeftPoint.lng)
             topLeftPoint = coord;
 
-        if (coord.latitude > bottomRightPoint.latitude && coord.longitude < bottomRightPoint.longitude)
+        if (coord.lat > bottomRightPoint.lat && coord.lng < bottomRightPoint.lng)
             bottomRightPoint = coord;
     }
     return {topLeft: topLeftPoint, bottomRight: bottomRightPoint};

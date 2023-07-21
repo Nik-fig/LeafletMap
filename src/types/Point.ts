@@ -1,4 +1,3 @@
-export type Point = {
-    longitude: number,
-    latitude: number,
-} ;
+import {LatLngLiteral} from 'leaflet'
+
+export type Point = LatLngLiteral;

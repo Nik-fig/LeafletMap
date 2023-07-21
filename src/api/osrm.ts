@@ -5,7 +5,7 @@ export async function getFastestRoute(points: Point[]) {
     const version = 'v1';
     const profile = 'driving';
     const url = 'http://router.project-osrm.org/';
-    const coordinatesJSON = points.map(point => point.longitude + ',' + point.latitude);
+    const coordinatesJSON = points.map(point => point.lng + ',' + point.lat);
     const options = [
         'geometries=geojson',
         'overview=full',

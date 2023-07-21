@@ -1,17 +1,7 @@
-import {RootStateRouteWaypoints} from '../store';
+import {waypointsRootStateRoute} from '../store';
 import {Point} from '../../types/Point';
 
 
-export const getWaypoints = (state: RootStateRouteWaypoints): Point[] => {
+export const getWaypoints = (state: waypointsRootStateRoute): Point[] => {
     return state.waypoints;
-}
-
-export const getFetchStatus = (state: RootStateRouteWaypoints): {
-    loading: RootStateRouteWaypoints['isLoading'],
-    error: RootStateRouteWaypoints['error']
-} => {
-    return {
-        loading: state.isLoading,
-        error: state.error,
-    }
 }

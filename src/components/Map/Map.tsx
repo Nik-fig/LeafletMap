@@ -22,18 +22,18 @@ export const Map: FC<Props> = () => {
     const mapRef = useRef() as RefObject<MapObject>;
 
     useEffect(() => {
-        mapRef.current?.setView({lat: center.latitude, lng: center.longitude}, zoom);
-    }, [])
+        mapRef.current?.setView(center, zoom);
+    }, [center, zoom])
 
     useEffect(() => {
         if (selectedRoute) {
             const center = centroid(selectedRoute.points);
-            mapRef.current?.setView([center.latitude, center.longitude]);
+            mapRef.current?.setView(center);
             const {topLeft: topLeftPoint, bottomRight: bottomRightPoint} = getRectangle(selectedRoute.points);
             mapRef.current?.fitBounds(
                 L.latLngBounds(
-                    {lat: topLeftPoint.latitude, lng: topLeftPoint.longitude},
-                    {lat: bottomRightPoint.latitude, lng: bottomRightPoint.longitude},
+                    topLeftPoint,
+                    bottomRightPoint,
                 )
             );
         }
@@ -41,7 +41,7 @@ export const Map: FC<Props> = () => {
 
     return (
         <MapContainer
-            center={[center.latitude, center.longitude]}
+            center={center}
             zoom={zoom}
             scrollWheelZoom={true}
             className={styles.map}

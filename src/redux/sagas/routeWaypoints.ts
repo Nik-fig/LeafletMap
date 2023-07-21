@@ -13,8 +13,8 @@ function* getFastestRoute(action: ReturnType<typeof getFastestRouteAction>): any
         const waypoints = response.routes[0].geometry.coordinates.map(
             (coordinate: any):Point => {
                 return {
-                    latitude: coordinate[1],
-                    longitude: coordinate[0],
+                    lng: coordinate[0],
+                    lat: coordinate[1],
                 }
             }
         );
@@ -24,6 +24,6 @@ function* getFastestRoute(action: ReturnType<typeof getFastestRouteAction>): any
     }
 }
 
-export default function* () {
+export default function* watcherRouteWaypoints() {
     yield takeEvery(getFastestRouteAction, getFastestRoute)
 }

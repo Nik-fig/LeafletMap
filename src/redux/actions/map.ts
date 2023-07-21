@@ -1,5 +1,5 @@
 import {createAction} from '@reduxjs/toolkit';
 
-import {RootStateMap} from '../store'
+import {mapRootState} from '../store'
 
-export const setView = createAction<{ center: RootStateMap['position'], zoom: RootStateMap['zoom'] }>('SET_VIEW_BY_POLYLINE');
+export const setView = createAction<{ center: mapRootState['position'], zoom: mapRootState['zoom'] }>('SET_VIEW_BY_POLYLINE');

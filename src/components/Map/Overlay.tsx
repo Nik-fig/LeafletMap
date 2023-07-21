@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useRef, RefObject} from 'react';
 import {Marker, Polyline} from 'react-leaflet'
-import L, {Polyline as PolylineClass, LatLngLiteral} from 'leaflet';
+import L, {Polyline as PolylineClass} from 'leaflet';
 
 
 import {useAppSelector, useAppDispatch} from '../../redux/hooks'
@@ -18,11 +18,6 @@ export const Overlay: FC<Props> = () => {
     const dispatch = useAppDispatch();
 
     const waypoints = useAppSelector(state => getWaypoints(state.routeWaypoints));
-    const wayPointsArray = waypoints.map<LatLngLiteral>(
-        (point) => {
-            return {lng: point.longitude, lat: point.latitude}
-        }
-    )
 
     const polylineRef = useRef() as RefObject<PolylineClass>;
 
@@ -32,14 +27,13 @@ export const Overlay: FC<Props> = () => {
     }, [selectedRoute])
 
 
-
     return (
         <>
             {
                 selectedRoute?.points.map((point, index) => {
                     return (
                         <Marker
-                            position={[point.latitude, point.longitude]}
+                            position={point}
                             key={index}
                             icon={
                                 L.icon({
@@ -52,7 +46,7 @@ export const Overlay: FC<Props> = () => {
                 })
             }
             <Polyline
-                positions={wayPointsArray}
+                positions={waypoints}
                 ref={polylineRef}
             />
 

@@ -19,12 +19,12 @@ export const store = configureStore({
 
 sagaMiddleware.run(rootSaga);
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type rootState = ReturnType<typeof store.getState>;
+export type appDispatch = typeof store.dispatch;
 
-export type RootStateRouteWaypoints = RootState['routeWaypoints'];
-export type RootStateRoute = RootState['route'];
-export type RootStateMap = RootState['map'];
+export type waypointsRootStateRoute = rootState['routeWaypoints'];
+export type routeRootState = rootState['route'];
+export type mapRootState = rootState['map'];
 
 
 

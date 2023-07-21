@@ -11,8 +11,8 @@ interface IInitial {
 
 const initialState: IInitial = {
     position: {
-        latitude: 59.83567701,
-        longitude: 30.41705607,
+        lat: 59.83567701,
+        lng: 30.41705607,
     },
     zoom: 13
 }
